@@ -24,4 +24,11 @@
 	<!-- 어노테이션이 붙은 클래스의 Bean을 자동으로 생성해주는 패키지 설정 -->
 	<context:component-scan base-package="com.pk.db" />
 	
+	<!-- Controller가 처리하지 못하는 요청은 WAS가 처리하도록 해주는 요청 -->
+	<default-servlet-handler/>
 </beans:beans>
+
+
+
+
+
