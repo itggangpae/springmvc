@@ -21,7 +21,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 		<c:forEach items="${list}" var="item">
 			<tr class="record">
 				<td align='center'>${item.itemid}</td>
-				<td>&nbsp; &nbsp; ${item.itemname}</td>
+				<td>&nbsp; &nbsp; 
+				<a href="detail?itemid=${item.itemid}">${item.itemname}</a>
+				</td>
 				<td align='right'>${item.price}원&nbsp; &nbsp;</td>
 			</tr>
 		</c:forEach>	

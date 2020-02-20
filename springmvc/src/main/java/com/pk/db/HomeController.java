@@ -34,6 +34,16 @@ public class HomeController {
 	
 		return "home";
 	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(HttpServletRequest request, Model model) {;
+		//서비스 메소드 호출
+		Item item = itemService.getItem(request);
+		//데이터 저장
+		model.addAttribute("item", item);
+	
+		return "detail";
+	}
 }
 
 
