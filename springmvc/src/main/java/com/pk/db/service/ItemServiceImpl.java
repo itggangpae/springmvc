@@ -31,6 +31,11 @@ public class ItemServiceImpl implements ItemService {
 		return itemDao.getItem(Integer.parseInt(itemid));
 	}
 
+	@Override
+	public Item getItem(HttpServletRequest request, int itemid) {
+		return itemDao.getItem(itemid);
+	}
+
 }
 
 

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
 	<!-- 애플리케이션 모든 곳에서 사용할 Bean을 생성 -->
-	
+
 	<!-- 스프링에서 데이터베이스를 사용할 때 접속 정보를 저장할 bean -->
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-	id="dataSource">
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
 		<!-- 데이터베이스 종류 -->
 		<property name="driverClassName"
-		value="oracle.jdbc.driver.OracleDriver"/>
+			value="oracle.jdbc.driver.OracleDriver" />
 		<!-- 데이터베이스 위치 -->
 		<property name="url"
-		value="jdbc:oracle:thin:@211.183.6.60:1521:xe" />
+			value="jdbc:oracle:thin:@211.183.6.60:1521:xe" />
 		<!-- 계정과 비밀번호 -->
 		<property name="username" value="user00" />
 		<property name="password" value="user00" />
@@ -21,16 +24,49 @@
 
 	<!-- MyBatis를 인터페이스를 이용해서 사용할 때 필요한 Bean -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
-	id="sqlSessionFactory">
+		id="sqlSessionFactory">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean"
-	id="itemDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		id="itemDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 		<property name="mapperInterface"
-		value="com.pk.db.dao.ItemDao"/>
+			value="com.pk.db.dao.ItemDao" />
 	</bean>
-	
-		
+
+	<!-- 하이버네이트 사용을 위한 설정 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>com/pk/db/dao/item.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+			</value>
+		</property>
+	</bean>
+
+	<!-- 하이버네이트는 트랜잭션 사용이 필수이기 때문에 추가 -->
+	<tx:annotation-driven />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory"
+			ref="sessionFactory" />
+	</bean>
+
+
 </beans>
+
+
+
+
+
+
+
+

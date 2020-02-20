@@ -22,7 +22,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 			<tr class="record">
 				<td align='center'>${item.itemid}</td>
 				<td>&nbsp; &nbsp; 
-				<a href="detail?itemid=${item.itemid}">${item.itemname}</a>
+				<a href="detail/${item.itemid}">${item.itemname}</a>
 				</td>
 				<td align='right'>${item.price}원&nbsp; &nbsp;</td>
 			</tr>

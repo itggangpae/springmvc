@@ -10,6 +10,9 @@ public interface ItemService {
 	//전체 데이터를 가져오는 메소드
 	public List<Item> allItem(HttpServletRequest request);
 	
+	//메소드 오버로딩: 메소드의 이름은 같고 매개변수의 개수나 자료형이 다른 경우
 	//데이터 1개를 가져오는 메소드
 	public Item getItem(HttpServletRequest request);
+	//파라미터를 읽지 않고 받는 메소드
+	public Item getItem(HttpServletRequest request, int itemid);
 }
