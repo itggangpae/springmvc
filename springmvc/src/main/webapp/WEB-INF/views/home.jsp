@@ -30,6 +30,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 	</table>
 	
 	<a href="item.xls">엑셀로 내려받기</a><br />
+	<a href="item.pdf">pdf로 내려받기</a><br />
 </body>
 </html>
 

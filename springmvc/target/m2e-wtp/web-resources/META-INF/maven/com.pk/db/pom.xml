@@ -31,7 +31,12 @@
 			<artifactId>poi</artifactId>
 			<version>3.16</version>
 		</dependency>
-	
+		<!-- pdf 출력을 위한 라이브러리 -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+		</dependency>
 		<!-- 오라클 라이브러리 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -46,7 +51,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- MyBatis  -->
+		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -66,7 +71,7 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.8</version>
 		</dependency>
-		
+
 		<!-- 로그를 출력하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
