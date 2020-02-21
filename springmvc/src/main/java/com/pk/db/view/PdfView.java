@@ -80,12 +80,11 @@ public class PdfView extends AbstractPdfView {
 		String path = request.getRealPath("/img");
 		
 		Image image = Image.getInstance(path + "/grape.jpg");
-		image.scaleToFit(1000, 600);
+		image.scaleToFit(100, 100);
 		image.setAbsolutePosition(100, 100);
 		document.add(image);
 
 	}
-
 }
 
 

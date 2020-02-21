@@ -66,6 +66,16 @@ public class HomeController {
 		//뷰이름을 리턴
 		return "pdf";
 	}
+	
+	@RequestMapping(value="/item1.json", method=RequestMethod.GET)
+	public String item1json(HttpServletRequest request, Model model) {
+		//서비스 메소드 호출
+		List<Item> list = itemService.allItem(request);
+		//데이터 저장
+		model.addAttribute("list", list);
+		//뷰이름을 리턴
+		return "item1json";
+	}
 }
 
 
