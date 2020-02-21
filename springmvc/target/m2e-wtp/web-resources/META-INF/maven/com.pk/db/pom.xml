@@ -25,6 +25,13 @@
 	</repositories>
 
 	<dependencies>
+		<!-- Excel 출력 라이브러리 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.16</version>
+		</dependency>
+	
 		<!-- 오라클 라이브러리 -->
 		<dependency>
 			<groupId>com.oracle</groupId>

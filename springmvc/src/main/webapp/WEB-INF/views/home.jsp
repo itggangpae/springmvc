@@ -28,6 +28,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 			</tr>
 		</c:forEach>	
 	</table>
+	
+	<a href="item.xls">엑셀로 내려받기</a><br />
 </body>
 </html>
 

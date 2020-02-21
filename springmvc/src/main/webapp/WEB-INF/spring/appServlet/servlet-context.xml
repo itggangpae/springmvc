@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- spring mvc project 와 관련된 설정
 	어노테이션을 사용할 수 있도록 해주는 설정 -->
@@ -16,16 +18,38 @@
 
 	<!-- Controller에서 리턴하는 뷰 이름을 가지고 실제 출력할 뷰를 
 	선택하도록 해주는 설정 -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<!-- 우선순위를 수정 -->
+		<beans:property name="order" value="1" />
 	</beans:bean>
+	
+	<!-- html 이외의 출력을 위한 ViewResolver 설정 -->
+	<beans:bean 
+	class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
+	
+	<!-- Controller가 리턴한 뷰이름과 뷰 클래스 매핑 -->
+	<beans:bean id="excel" class="com.pk.db.view.ExcelView" />
 	
 	<!-- 어노테이션이 붙은 클래스의 Bean을 자동으로 생성해주는 패키지 설정 -->
 	<context:component-scan base-package="com.pk.db" />
 	
 	<!-- Controller가 처리하지 못하는 요청은 WAS가 처리하도록 해주는 요청 -->
 	<default-servlet-handler/>
+	
+	<!-- 하이버네이트는 트랜잭션 사용이 필수이기 때문에 추가 -->
+	<tx:annotation-driven />
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<beans:property name="sessionFactory"
+			ref="sessionFactory" />
+	</beans:bean>
+	
 </beans:beans>
 
 
