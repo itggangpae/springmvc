@@ -35,6 +35,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 	<a href="item.csv">csv로 내려받기</a><br />
 	<a href="item2.json">json로 내려받기</a><br />
 	<a href="#" id="ajax">ajax로 json 데이터 사용하기</a><br />
+	<a href="item.xml">XML로 내려받기</a><br/>
 	
 	<div align='center' id="disp"></div>
 </body>

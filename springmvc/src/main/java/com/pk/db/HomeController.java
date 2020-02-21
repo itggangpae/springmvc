@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pk.db.domain.Item;
+import com.pk.db.domain.ItemReport;
 import com.pk.db.service.ItemService;
 
 
@@ -75,6 +76,20 @@ public class HomeController {
 		model.addAttribute("list", list);
 		//뷰이름을 리턴
 		return "item1json";
+	}
+	
+	@RequestMapping(value="/item.xml", method=RequestMethod.GET)
+	public String xml(HttpServletRequest request, Model model) {
+		//서비스 메소드 호출
+		List<Item> list = itemService.allItem(request);
+		//XML 출력 데이터 생성
+		ItemReport itemReport = new ItemReport();
+		itemReport.setList(list);
+		
+		//데이터 저장
+		model.addAttribute("list", itemReport);
+		//뷰이름을 리턴
+		return "xmlreport";
 	}
 }
 
