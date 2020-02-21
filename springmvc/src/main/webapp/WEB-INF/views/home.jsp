@@ -29,7 +29,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 		</c:forEach>	
 	</table>
 	
-	<a href="insert">데이터 삽입</a>
+	<a href="insert">데이터 삽입</a><br/>
 	<a href="item.xls">엑셀로 내려받기</a><br />
 	<a href="item.pdf">pdf로 내려받기</a><br />
 	<a href="item1.json">json으로 내려받기</a><br />
