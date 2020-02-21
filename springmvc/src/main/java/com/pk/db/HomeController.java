@@ -91,6 +91,12 @@ public class HomeController {
 		//뷰이름을 리턴
 		return "xmlreport";
 	}
+	
+	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	public String insert(HttpServletRequest request, Model model) {
+		//뷰이름을 리턴
+		return "insert";
+	}
 }
 
 
