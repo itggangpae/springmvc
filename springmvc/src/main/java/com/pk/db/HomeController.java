@@ -111,6 +111,14 @@ public class HomeController {
 		//리다이렉트를 할 때는 View 이름이 아니고 URL을 작성
 		return "redirect:./";
 	}
+	
+	//chat 이라는 요청이 오면 chat이라는 문자열을 가지고 ViewResolver 설정을 확인해서
+	//뷰 페이지를 결정 - WEB-INF/views/?.jsp
+	@RequestMapping(value="/chat", method=RequestMethod.GET)
+	public String chat(HttpServletRequest request, Model model) {
+		//뷰이름을 리턴
+		return "chat";
+	}
 }
 
 
