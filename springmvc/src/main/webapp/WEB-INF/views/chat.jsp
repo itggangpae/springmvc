@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+	<a href="./">메인화면으로 이동</a><br />
 	이름<input type="text" id="nickname"/>
 	<input type="button" id="enterbtn" value="입장"/>
 	<input type="button" id="exitbtn" value="나가기"/>
@@ -31,6 +32,11 @@
 	<script>
 		//웹 소켓 변수
 		var wsocket
+		
+		//변수에 이름을 기재하고 함수를 대입하면
+		//이 함수를 만들고 난 후 뒤에서 사용가능해집니다.
+		//function 이름(매개변수){}로 만들면 순서에 상관없이 아무곳에서나 호출 가능
+		
 		//문자열을 출력하는 함수
 		var appendMessage = function(msg){
 			document.getElementById("chatmessagearea").innerHTML = 

@@ -15,13 +15,10 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 //웹 소켓 채팅 서버 클래스
 public class ChatHandler extends TextWebSocketHandler {
 	//접속한 유저 목록을 가질 List를 생성
+	//List는 1개만 생성하기 위해서 static으로 선언
 	private static List<WebSocketSession> users
 		= new ArrayList<WebSocketSession>();
-	
-	public ChatHandler() {
-		System.out.println("인스턴스 생성");
-	}
-	
+
 	//클라이언트가 접속했을 때 호출될 메소드
 	//매개변수로 대입된 데이터가 접속한 클라이언트
 	@Override
