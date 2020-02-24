@@ -120,6 +120,44 @@
 				}
 			}
 		});
+		
+		//폼의 데이터를 전송할 때 발생하는 이벤트 처리
+		document.getElementById("myform").addEventListener("submit",function(e){
+			//중복 체크 통과여부 확인
+			if(idcheck.value == false){
+				iddiv.innerHTML = '아이디 중복검사를 하세요';
+				iddiv.style.color = 'red';
+				itemid.focus();
+				//폼의 데이터를 전송하지 않도록 하기
+				e.preventDefault();
+				return;
+			}
+			
+			var price = document.getElementById("price");
+			//price 입력 란의 숫자만 입력되었는지 체크
+			//+ 나 - 기호를 앞에 붙일 수 있는지
+			//,의 경우는 어떻게 할것인지
+			for(var i=0; i<price.value.length; i=i+1){
+				var ch = price.value.charAt(i);
+				if(i == 0){
+					if(!(ch == '+' || ch == '-' || (ch >= '0' && ch <= '9'))){
+						price.focus();
+						alert("가격의 첫번째 자리는 숫자나 +, - 기호여야 합니다.")
+						//폼의 데이터를 전송하지 않도록 하기
+						e.preventDefault();
+						return;
+					}
+				}else{
+					if(!(ch >= '0' && ch <= '9')){
+						price.focus();
+						alert("가격은 숫자로만 입력하세요!!!")
+						//폼의 데이터를 전송하지 않도록 하기
+						e.preventDefault();
+						return;
+					}
+				}
+			}
+		});
 	</script>
 	
 	
