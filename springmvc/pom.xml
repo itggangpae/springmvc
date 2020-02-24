@@ -25,6 +25,13 @@
 	</repositories>
 
 	<dependencies>
+		<!-- 웹 소켓 사용을 위한 의존성 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
 		<!-- 파일 업로드 처리를 위한 의존성 라이브러리 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

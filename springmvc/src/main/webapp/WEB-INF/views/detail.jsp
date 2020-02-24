@@ -13,7 +13,8 @@
 		<h2>상품 상세보기</h2>
 		<table border="1">
 			<tr>
-				<td><img src="../img/${item.pictureurl}" /></td>
+				<td><img src="../img/${item.pictureurl}" 
+				width="100" height="100"/></td>
 				<td>
 					<table>
 						<tr height='50'>
