@@ -27,6 +27,70 @@
 	
 	<input type="text" id="message"/>
 	<input type="button" id="sendbtn" value="전송"/>
+	
+	<script>
+		//웹 소켓 변수
+		var wsocket
+		//문자열을 출력하는 함수
+		var appendMessage = function(msg){
+			document.getElementById("chatmessagearea").innerHTML = 
+				msg + "<br/>" + 
+				document.getElementById("chatmessagearea").innerHTML
+		}
+		
+		//이벤트 처리 함수
+		var onOpen = function(){
+			appendMessage("연결 되었습니다.");
+		}
+		var onClose = function(){
+			appendMessage("연결 해제되었습니다.");
+			wsocket.close();
+		}
+		var onMessage = function(evt){
+			var data = evt.data;
+			appendMessage(data);
+		}
+		var send = function(){
+			//입력한 내용을 WebSocket 서버에게 전달하고 message 란은 클리어
+			var nickname = document.getElementById("nickname").value;
+			var msg = document.getElementById("message").value;
+			wsocket.send(nickname + ":" + msg);
+			document.getElementById("message").value = '';
+		}
+		
+		//웹 소켓 연결함수
+		var connect = function(){
+			//http://localhost:9000/db/chat-ws - 자기 컴퓨터에서만 접속
+			wsocket = new WebSocket("ws://localhost:9000/db/chat-ws")
+			//이벤트 핸들러 연결
+			wsocket.addEventListener("open", onOpen);
+			wsocket.addEventListener("message", onMessage);
+		};
+		
+		//message 입력란에서 키보드 이벤트가 발생하면
+		document.getElementById("message").addEventListener("keypress",
+				function(e){
+			//enter를 누르면 send() 호출
+			event = e || window.event;
+			var keycode = (event.keyCode?event.keyCode:event.which);
+			if(keycode == 13){
+				send()
+			}
+			event.stopPropagation();
+		})
+		
+		//버튼들의 이벤트 처리
+		document.getElementById('sendbtn').addEventListener("click", function(e){
+			send();
+		})
+		document.getElementById('enterbtn').addEventListener("click", function(e){
+			connect();
+		})
+		document.getElementById('exitbtn').addEventListener("click", function(e){
+			onClose();
+		})
+	
+	</script>
 </body>
 </html>
 

@@ -18,6 +18,10 @@ public class ChatHandler extends TextWebSocketHandler {
 	private static List<WebSocketSession> users
 		= new ArrayList<WebSocketSession>();
 	
+	public ChatHandler() {
+		System.out.println("인스턴스 생성");
+	}
+	
 	//클라이언트가 접속했을 때 호출될 메소드
 	//매개변수로 대입된 데이터가 접속한 클라이언트
 	@Override
