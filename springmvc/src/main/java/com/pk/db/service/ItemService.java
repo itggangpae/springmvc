@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.pk.db.domain.Item;
 
 public interface ItemService {
@@ -15,4 +17,19 @@ public interface ItemService {
 	public Item getItem(HttpServletRequest request);
 	//파라미터를 읽지 않고 받는 메소드
 	public Item getItem(HttpServletRequest request, int itemid);
+	
+	//데이터 삽입(파일 업로드) 처리를 위한 메소드
+	public int insertItem(MultipartHttpServletRequest request);
+	
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -72,6 +72,12 @@
 			ref="sessionFactory" />
 	</beans:bean>
 	
+	<!-- 파일 업로드를 처리할 Bean(spring이 생성하고 관리하는 Instance)을 생성 -->
+	<beans:bean
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	id = "multipartResolver">
+	</beans:bean>
+	
 </beans:beans>
 
 
