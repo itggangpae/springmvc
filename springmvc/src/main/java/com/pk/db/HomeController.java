@@ -119,6 +119,12 @@ public class HomeController {
 		//뷰이름을 리턴
 		return "chat";
 	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login(HttpServletRequest request, Model model) {
+		//뷰이름을 리턴
+		return "login";
+	}
 }
 
 

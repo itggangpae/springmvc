@@ -42,6 +42,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/pk/db/dao/item.hbm.xml</value>
+				<value>com/pk/db/dao/member.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
