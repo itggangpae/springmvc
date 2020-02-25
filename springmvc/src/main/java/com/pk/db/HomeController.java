@@ -148,6 +148,14 @@ public class HomeController {
 				"msg", "없는 아이디이거나 잘못된 비밀번호입니다.");
 			return "redirect:login";
 		}else {
+			//이동할 URL이 있는지 확인
+			String dest = 
+				(String)request.getSession().getAttribute("dest");
+			if(dest != null) {
+				request.getSession().removeAttribute("dest");
+				return "redirect:" + dest;
+			}
+			
 			//로그인 성공이면 메인 페이지로 이동
 			return "redirect:./";
 		}

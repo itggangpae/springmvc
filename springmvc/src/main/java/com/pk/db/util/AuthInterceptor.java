@@ -31,6 +31,25 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			result = true;
 		}else {
 			try {
+				
+				//로그인 페이지로 이동할 때 메시지 저장
+				request.getSession().setAttribute(
+					"msg", "로그인이 되어야 가능한 서비스입니다.");
+				//요청 URL을 확인
+				String requestURI = request.getRequestURI();
+				String contextPath = request.getContextPath();
+				String command = requestURI.substring(contextPath.length());
+				
+				//파라미터 가져오기
+				String queryString = request.getQueryString();
+				//파라미터가 있으면 command 뒤에 붙이기
+				if(queryString != null) {
+					command = command + "?" + queryString;
+				}
+				
+				//세션에 command 저장
+				request.getSession().setAttribute("dest", command);
+				
 				//로그인이 되어 있지 않으면 로그인 페이지로 이동
 				response.sendRedirect("login");
 			} catch (IOException e) {
