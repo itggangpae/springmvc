@@ -33,17 +33,18 @@ public class MemberServiceImpl implements MemberService {
 		if(member != null) {
 			if(member.getUserpw().equals(userpw)) {
 				//로그인 성공한 경우는 session에 로그인 정보를 저장
-				member.setUserpw(null);
+				
+				//하이버네이트에서 넘어온 데이터는 하이버네이트 구문으로 수정해야 함
+				//member.setUserpw(null);
 				request.getSession().setAttribute("member", member);
+				System.out.println(member);
 			}else {
 				//로그인 실패
 				member = null;
 			}
-		}
-		
+		}	
 		return member;
 	}
-
 }
 
 
