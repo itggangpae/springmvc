@@ -5,14 +5,30 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- interceptor 설정 : chat으로 이동할 때
-	interceptor가 동작하도록 설정 -->
+	<!-- aop 설정
+	com.pk.db 패키지 내에 있는 Controller라는 이름으로 끝나는 클래스의 
+	메소드이름은 상관없고 매개변수개수도 상관없이 호출만 되면
+	LoggingAdvice 클래스의 invoke 메소드가 호출됩니다. -->
+	<aop:config>
+		<aop:aspect id="traceAspect" ref="loggingAdvice">
+			<aop:pointcut id="publicMethod"
+			expression="execution(public * com.pk.db..*Controller.*(..))" />
+			<aop:around pointcut-ref="publicMethod" method="invoke" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 어노테이션을 추가한 AOP 클래스가 동작하도록 해주는 설정 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- interceptor 설정 : chat으로 이동할 때 interceptor가 동작하도록 설정 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/chat"/>
@@ -20,15 +36,13 @@
 		</interceptor>
 	</interceptors>
 
-	<!-- spring mvc project 와 관련된 설정
-	어노테이션을 사용할 수 있도록 해주는 설정 -->
+	<!-- spring mvc project 와 관련된 설정 어노테이션을 사용할 수 있도록 해주는 설정 -->
 	<annotation-driven />
 
 	<!-- css, js, img 파일 들을 캐싱 해주는 디렉토리 설정 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Controller에서 리턴하는 뷰 이름을 가지고 실제 출력할 뷰를 
-	선택하도록 해주는 설정 -->
+	<!-- Controller에서 리턴하는 뷰 이름을 가지고 실제 출력할 뷰를  선택하도록 해주는 설정 -->
 	<beans:bean 
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
