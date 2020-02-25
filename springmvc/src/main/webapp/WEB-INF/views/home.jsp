@@ -9,9 +9,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
 <title>목록 출력</title>
 <link rel="stylesheet" href="./css/item.css">
+
+<style>
+	#display{
+		height:300px;
+		width:400px;
+		overflow-y:auto;
+		border:1px solid black;
+	}
+</style>
+
 </head>
 <body>
 	<h2 align='center'>상품 목록</h2>
+	<div id="display" align="center">
 	<table border='1' align='center'>
 		<tr class='header'>
 			<th width='80'>상품ID</th>
@@ -28,7 +39,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 			</tr>
 		</c:forEach>	
 	</table>
-	
+	</div>
 	<c:if test="${member == null}">
 		<a href="login">로그인</a><br/>
 	</c:if>
@@ -36,6 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 		${member.nickname}님 <a href="logout">로그아웃</a><br/>
 	</c:if>
 	
+	<div>
 	<a href="insert">데이터 삽입</a><br/>
 	<a href="chat">WebSocket을 이용한 채팅 구현</a><br/>
 	<a href="item.xls">엑셀로 내려받기</a><br />
@@ -45,7 +57,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 	<a href="item2.json">json로 내려받기</a><br />
 	<a href="#" id="ajax">ajax로 json 데이터 사용하기</a><br />
 	<a href="item.xml">XML로 내려받기</a><br/>
-	
+	</div>
 	<div align='center' id="disp"></div>
 </body>
 

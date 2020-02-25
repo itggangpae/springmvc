@@ -2,6 +2,7 @@ package com.pk.db.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,24 @@ public class ItemServiceImpl implements ItemService {
 	public List<Item> allItem(HttpServletRequest request) {
 		//Dao의 메소드에 파라미터가 없는 경우는 Dao 메소드를 호출해서 리턴
 		//return itemDao.allItem();
-		return hibernateDao.allItem();
+		
+		List<Item> list = hibernateDao.allItem();
+		//list의 데이터를 정렬할 때는 list.sort()를 호출하면 되는데 이 경우는 
+		//list에 속한 데이터에 Comparable 인터페이스가 implements 되어 있어야 합니다.
+		//그렇지 않은 경우는 Comparator 인터페이스를 구현한 인스턴스를 대입해주어야 합니다.
+		
+		//itemid의 내림차순 - itemid는 정수
+		Comparator<Item> comp = new Comparator<Item>() {
+			@Override
+			public int compare(Item arg0, Item arg1) {
+				// arg1.getItemname().compare(arg0.getItemname());
+				return arg1.getItemid() - arg0.getItemid();
+			}
+		};
+		
+		list.sort(comp);
+		
+		return list;
 	}
 
 	@Override

@@ -11,6 +11,15 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+	<!-- interceptor 설정 : chat으로 이동할 때
+	interceptor가 동작하도록 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/chat"/>
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+	</interceptors>
+
 	<!-- spring mvc project 와 관련된 설정
 	어노테이션을 사용할 수 있도록 해주는 설정 -->
 	<annotation-driven />
@@ -87,6 +96,14 @@
 	</websocket:handlers>
 	
 </beans:beans>
+
+
+
+
+
+
+
+
 
 
 
