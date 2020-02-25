@@ -152,6 +152,7 @@ public class HomeController {
 			String dest = 
 				(String)request.getSession().getAttribute("dest");
 			if(dest != null) {
+				//dest에 저장된 내용을 삭제 - 계속 남아서 문제를 발생 시킬 가능성이 있음
 				request.getSession().removeAttribute("dest");
 				return "redirect:" + dest;
 			}
